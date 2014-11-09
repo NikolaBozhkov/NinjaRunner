@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "ProfileDetails.h"
 #import "Util.h"
+#import "GameScene.h"
 
 @interface AppDelegate ()
 

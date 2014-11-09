@@ -27,6 +27,13 @@
     scoreLabel.position = CGPointMake(frame.size.width - margin * 2, - margin);
     [hud addChild:scoreLabel];
     
+    hud.pauseButton = [SKSpriteNode spriteNodeWithImageNamed:@"pause_button"];
+    hud.pauseButton.anchorPoint = CGPointMake(0, 1);
+    hud.pauseButton.xScale = 0.15;
+    hud.pauseButton.yScale = 0.15;
+    hud.pauseButton.position = CGPointMake(margin, margin);
+    [hud addChild:hud.pauseButton];
+    
     return hud;
 }
 

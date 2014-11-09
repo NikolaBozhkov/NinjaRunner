@@ -53,6 +53,8 @@
     SKSpriteNode *quitButton;
     SKSpriteNode *rerunButton;
     
+    SKLabelNode *pauseLabel;
+    
     NSString *bloodParticlesFilePath;
 }
 
@@ -63,6 +65,18 @@
     _totalGameTime = 0;
     _gameOver = NO;
     _isPlayingMusic = NO;
+    
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(handlePause)
+     name:UIApplicationWillResignActiveNotification
+     object:nil];
+    
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(handleUnpause)
+     name:UIApplicationDidBecomeActiveNotification
+     object:nil];
     
     bloodParticlesFilePath = [[NSBundle mainBundle] pathForResource:@"BloodParticles" ofType:@"sks"];
     [self setupGestureRecognizers];
@@ -79,6 +93,10 @@
     
     hud = [HudNode hudAtPosition:CGPointMake(0, self.frame.size.height - 20) withFrame:self.frame];
     [self addChild:hud];
+    
+    pauseLabel = [Util createLabelWithFont:@"Futura-CondensedExtraBold" text:@"Paused" fontColor:[SKColor orangeColor] fontSize:40];
+    pauseLabel.zPosition = 10;
+    pauseLabel.position = _center;
     
     GroundNode *ground = [GroundNode groundWithSize:CGSizeMake(self.frame.size.width, _groundHeight)];
     [self addChild:ground];
@@ -153,10 +171,29 @@
     [powerAttackCharge finishChargingWithText:text];
 }
 
+- (void) handlePause {
+    [self addChild:pauseLabel];
+}
+
+- (void) handleUnpause {
+    self.paused = YES;
+}
+
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [touches anyObject];
     CGPoint location = [touch locationInNode:self];
     SKNode *node = [self nodeAtPoint:location];
+    
+    if ([node isEqual:hud.pauseButton]) {
+        if (self.paused) {
+            self.paused = NO;
+            _lastUpdateTimeInterval = 0;
+            [pauseLabel removeFromParent];
+        } else {
+            [self addChild:pauseLabel];
+            self.paused = YES;
+        }
+    }
     
     if (node.name == ReplayLabelName) {
         GameScene *scene = [GameScene sceneWithSize:self.frame.size];
@@ -247,16 +284,14 @@
 }
 
 - (void) saveProfileDetails {
-    ProfileDetails *profile = [Util loadProfileDetails];
+    Profile.highScore = Profile.highScore < hud.score ? hud.score : Profile.highScore;
+    Profile.totalScore += hud.score;
+    Profile.mostKills = Profile.mostKills < hud.kills ? hud.kills : Profile.mostKills;
+    Profile.totalKills += hud.kills;
+    Profile.longestGameTime = Profile.longestGameTime < _totalGameTime ? _totalGameTime : Profile.longestGameTime;
+    Profile.totalGameTime += _totalGameTime;
     
-    profile.highScore = profile.highScore < hud.score ? hud.score : profile.highScore;
-    profile.totalScore += hud.score;
-    profile.mostKills = profile.mostKills < hud.kills ? hud.kills : profile.mostKills;
-    profile.totalKills += hud.kills;
-    profile.longestGameTime = profile.longestGameTime < _totalGameTime ? _totalGameTime : profile.longestGameTime;
-    profile.totalGameTime += _totalGameTime;
-    
-    [Util saveProfileDetails:profile];
+    [Util saveProfileDetails:Profile];
 }
 
 - (void) endGame {
@@ -276,7 +311,11 @@
     [self saveProfileDetails];
 }
 
--(void)update:(CFTimeInterval)currentTime {
+-(void) update:(CFTimeInterval)currentTime {
+    if (self.paused) {
+        return;
+    }
+    
     if (_lastUpdateTimeInterval) {
         _timeSinceLastUpdate = currentTime - _lastUpdateTimeInterval;
         _timeSinceEnemyAdded += _timeSinceLastUpdate;

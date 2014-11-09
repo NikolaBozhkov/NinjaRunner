@@ -13,6 +13,7 @@
 
 static NSString *UserIdKey = @"userId";
 
+// TODO: Fix logic, the block should do the work
 + (PlayerScore *)getPlayerScore {
     __block PlayerScore *playerScore;
     UIDevice *device = [UIDevice currentDevice];
@@ -35,6 +36,48 @@ static NSString *UserIdKey = @"userId";
 }
 
 + (void)savePlayerScore:(PlayerScore *)playerScore {
+    [self savePlayerScoreWithBlock:^(NSArray *playerScoreArray) {
+        PlayerScore *foundPlayer = playerScoreArray.firstObject;
+        
+        if (!foundPlayer) {
+            foundPlayer = [PlayerScore object];
+            foundPlayer.userId = [UIDevice currentDevice].identifierForVendor.UUIDString;
+        }
+        
+        foundPlayer.score = playerScore.score;
+        foundPlayer.kills = playerScore.kills;
+        foundPlayer.name = Profile.name;
+        
+        if ([Util checkInternetConnection]) {
+            [foundPlayer saveInBackground];
+        } else {
+            [foundPlayer saveEventually];
+        }
+    }];
+}
+
++ (void) savePlayerScoreName:(NSString *)name {
+    [self savePlayerScoreWithBlock:^(NSArray *playerScoreArray) {
+        PlayerScore *foundPlayer = playerScoreArray.firstObject;
+        
+        if (!foundPlayer) {
+            foundPlayer = [PlayerScore object];
+            foundPlayer.userId = [UIDevice currentDevice].identifierForVendor.UUIDString;
+            foundPlayer.score = Profile.highScore;
+            foundPlayer.kills = Profile.totalKills;
+        }
+
+        foundPlayer.name = Profile.name;
+        
+        if ([Util checkInternetConnection]) {
+            [foundPlayer saveInBackground];
+        } else {
+            [foundPlayer saveEventually];
+        }
+    }];
+}
+
++ (void) savePlayerScoreWithBlock:(void(^)(NSArray *playerScoreArray))block {
     UIDevice *device = [UIDevice currentDevice];
     NSString *deviceIdentifierString = [device.identifierForVendor UUIDString];
     
@@ -43,22 +86,7 @@ static NSString *UserIdKey = @"userId";
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *playerScoreArray, NSError *error) {
         if (!error) {
-            PlayerScore *foundPlayer = playerScoreArray.firstObject;
-            
-            if (!foundPlayer) {
-                foundPlayer = [PlayerScore object];
-                foundPlayer.userId = deviceIdentifierString;
-                foundPlayer.name = @"Player";//(NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:NameKey];
-            }
-            
-            foundPlayer.score = playerScore.score;
-            foundPlayer.kills = playerScore.kills;
-
-            if ([Util checkInternetConnection]) {
-                [foundPlayer saveInBackground];
-            } else {
-                [foundPlayer saveEventually];
-            }
+            block(playerScoreArray);
         }
     }];
 }

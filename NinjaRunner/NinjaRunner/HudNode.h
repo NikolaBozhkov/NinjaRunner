@@ -12,8 +12,9 @@
 
 + (instancetype) hudAtPosition:(CGPoint)position withFrame:(CGRect)frame;
 
-@property NSInteger score;
-@property NSInteger kills;
+@property (nonatomic, strong) SKSpriteNode *pauseButton;
+@property (nonatomic, assign) NSInteger score;
+@property (nonatomic, assign) NSInteger kills;
 
 - (void) addPoints:(NSInteger)points;
 

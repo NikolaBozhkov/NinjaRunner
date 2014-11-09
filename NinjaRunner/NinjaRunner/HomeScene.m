@@ -10,6 +10,7 @@
 #import "GameScene.h"
 #import "TutorialScene.h"
 #import "Util.h"
+#import "ProfileScene.h"
 
 @implementation HomeScene
 
@@ -46,7 +47,7 @@ static NSString *leaderboardLabelName = @"Leaderboard";
     [self addChild:tutorialLabel];
     
     SKLabelNode *profileLabel = [Util createLabelWithFont:titleFont text:profileLabelName fontColor:[SKColor whiteColor] fontSize:fontSize];
-    profileLabel.name = leaderboardLabelName;
+    profileLabel.name = profileLabelName;
     profileLabel.position = CGPointMake(self.frame.size.width - profileLabel.frame.size.width / 2 - labelMargin,
                                         tutorialLabel.position.y - profileLabel.frame.size.height - labelMargin * 2);
     [self addChild:profileLabel];
@@ -71,8 +72,10 @@ static NSString *leaderboardLabelName = @"Leaderboard";
     } else if (node.name == tutorialLabelName) {
         TutorialScene *tutorialScene = [TutorialScene sceneWithSize:self.frame.size];
         [self.view presentScene:tutorialScene transition:transition];
-    } else if (node.name == leaderboardLabelName) {
-        
+    } else if (node.name == profileLabelName) {
+        ProfileScene *profileScene = [ProfileScene sceneWithSize:self.frame.size];
+        transition = [SKTransition pushWithDirection:SKTransitionDirectionLeft duration:0.4];
+        [self.view presentScene:profileScene transition:transition];
     }
 }
 

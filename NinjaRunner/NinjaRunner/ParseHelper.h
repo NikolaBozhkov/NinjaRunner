@@ -15,5 +15,6 @@
 
 + (PlayerScore *) getPlayerScore;
 + (void) savePlayerScore:(PlayerScore *)playerScore;
++ (void) savePlayerScoreName:(NSString *)name;
 
 @end
