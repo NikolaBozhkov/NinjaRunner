@@ -12,6 +12,6 @@
 
 @interface GameOverNode : SKNode
 
-+ (instancetype) gameOverAtPosition:(CGPoint)position score:(NSInteger)score scene:(GameScene *)scene;
++ (instancetype) gameOverAtPosition:(CGPoint)position score:(NSInteger)score kills:(NSInteger)kills scene:(GameScene *)scene;
 
 @end

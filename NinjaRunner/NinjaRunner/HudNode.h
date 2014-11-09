@@ -13,6 +13,7 @@
 + (instancetype) hudAtPosition:(CGPoint)position withFrame:(CGRect)frame;
 
 @property NSInteger score;
+@property NSInteger kills;
 
 - (void) addPoints:(NSInteger)points;
 

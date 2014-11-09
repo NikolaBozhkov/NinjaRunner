@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		06342AC01A081BD0007D2256 /* NinjaNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 06342ABF1A081BD0007D2256 /* NinjaNode.m */; };
+		240B78801A0F698700DD80DF /* PlayerScore.m in Sources */ = {isa = PBXBuildFile; fileRef = 240B787F1A0F698700DD80DF /* PlayerScore.m */; };
+		240B78831A0F728E00DD80DF /* ProfileDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 240B78821A0F728E00DD80DF /* ProfileDetails.m */; };
 		2419D57E1A0CE10C00D62363 /* MonsterBullNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 2419D57D1A0CE10C00D62363 /* MonsterBullNode.m */; };
 		2419D5821A0CE3F200D62363 /* EnemyFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2419D5811A0CE3F200D62363 /* EnemyFactory.m */; };
 		2419D5851A0D0D2200D62363 /* EagleNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 2419D5841A0D0D2200D62363 /* EagleNode.m */; };
@@ -64,6 +66,10 @@
 
 /* Begin PBXFileReference section */
 		06342ABF1A081BD0007D2256 /* NinjaNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NinjaNode.m; sourceTree = "<group>"; };
+		240B787E1A0F698700DD80DF /* PlayerScore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerScore.h; sourceTree = "<group>"; };
+		240B787F1A0F698700DD80DF /* PlayerScore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerScore.m; sourceTree = "<group>"; };
+		240B78811A0F728E00DD80DF /* ProfileDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileDetails.h; sourceTree = "<group>"; };
+		240B78821A0F728E00DD80DF /* ProfileDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileDetails.m; sourceTree = "<group>"; };
 		2419D57C1A0CE10C00D62363 /* MonsterBullNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonsterBullNode.h; sourceTree = "<group>"; };
 		2419D57D1A0CE10C00D62363 /* MonsterBullNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonsterBullNode.m; sourceTree = "<group>"; };
 		2419D5801A0CE3F200D62363 /* EnemyFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnemyFactory.h; sourceTree = "<group>"; };
@@ -163,6 +169,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		240B787D1A0F696E00DD80DF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				240B787E1A0F698700DD80DF /* PlayerScore.h */,
+				240B787F1A0F698700DD80DF /* PlayerScore.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		2419D57F1A0CE11A00D62363 /* EnemyNodes */ = {
 			isa = PBXGroup;
 			children = (
@@ -229,6 +244,8 @@
 				2421CAE31A07A989000DB144 /* GameScene.m */,
 				2420CB0B1A0E3AEF0068C9BD /* HomeScene.h */,
 				2420CB0C1A0E3AEF0068C9BD /* HomeScene.m */,
+				240B78811A0F728E00DD80DF /* ProfileDetails.h */,
+				240B78821A0F728E00DD80DF /* ProfileDetails.m */,
 				24968B9E1A07B25B00E679C5 /* Sprites.atlas */,
 				2421CAED1A07A989000DB144 /* Images.xcassets */,
 				24C1E5091A0C131700163112 /* BloodParticles.sks */,
@@ -275,6 +292,7 @@
 		243D64541A09365500166A00 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				240B787D1A0F696E00DD80DF /* Models */,
 				2420CB2B1A0E67150068C9BD /* Reachability.h */,
 				2420CB2C1A0E67150068C9BD /* Reachability.m */,
 				2420CB281A0E58240068C9BD /* ParseHelper.h */,
@@ -441,6 +459,7 @@
 				243D64501A092D2900166A00 /* BackgroundNode.m in Sources */,
 				2420CB0D1A0E3AEF0068C9BD /* HomeScene.m in Sources */,
 				2421CAE91A07A989000DB144 /* GameViewController.m in Sources */,
+				240B78831A0F728E00DD80DF /* ProfileDetails.m in Sources */,
 				2419D5881A0D12AD00D62363 /* EarthDragonNode.m in Sources */,
 				2421CAE11A07A989000DB144 /* AppDelegate.m in Sources */,
 				2421CAE41A07A989000DB144 /* GameScene.m in Sources */,
@@ -452,6 +471,7 @@
 				2419D5851A0D0D2200D62363 /* EagleNode.m in Sources */,
 				2419D57E1A0CE10C00D62363 /* MonsterBullNode.m in Sources */,
 				2421CADE1A07A989000DB144 /* main.m in Sources */,
+				240B78801A0F698700DD80DF /* PlayerScore.m in Sources */,
 				2419D5821A0CE3F200D62363 /* EnemyFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

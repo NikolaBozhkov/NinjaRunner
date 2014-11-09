@@ -9,10 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
 #import "Util.h"
+#import "PlayerScore.h"
 
 @interface ParseHelper : NSObject
 
-+ (NSNumber *) getHighScore;
-+ (void) saveHighScore:(NSInteger)highScore;
++ (PlayerScore *) getPlayerScore;
++ (void) savePlayerScore:(PlayerScore *)playerScore;
 
 @end

@@ -29,4 +29,23 @@
     }
 }
 
++ (void) saveProfileDetails:(ProfileDetails *)profile {
+    NSData *encodedProfile = [NSKeyedArchiver archivedDataWithRootObject:profile];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:encodedProfile forKey:ProfileDetailsKey];
+    [defaults synchronize];
+}
+
++ (ProfileDetails *) loadProfileDetails {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSData *encodedProfile = [defaults objectForKey:ProfileDetailsKey];
+    
+    if (!encodedProfile) {
+        return nil;
+    }
+    
+    ProfileDetails *profile = [NSKeyedUnarchiver unarchiveObjectWithData:encodedProfile];
+    return profile;
+}
+
 @end

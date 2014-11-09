@@ -26,6 +26,7 @@
 @property (nonatomic, assign) NSTimeInterval lastUpdateTimeInterval;
 @property (nonatomic, assign) NSTimeInterval timeSinceLastUpdate;
 @property (nonatomic, assign) NSTimeInterval timeSinceEnemyAdded;
+@property (nonatomic, assign) NSTimeInterval totalGameTime;
 
 @property (nonatomic, assign) BOOL gameOver;
 
@@ -59,6 +60,7 @@
     /* Setup your scene here */
     self.center = CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2);
     _timeSinceEnemyAdded = 0;
+    _totalGameTime = 0;
     _gameOver = NO;
     _isPlayingMusic = NO;
     
@@ -86,12 +88,6 @@
     [self addChild:ninja];
     
     [self addEnemy];
-    
-//    [self addChild: [self createSettingsButtonNode]];
-    
-//    [self setupSounds];
-//    [self.backgroundMusic play];
-//    _isPlayingMusic = YES;
 }
 
 - (void) setupGestureRecognizers {
@@ -208,6 +204,7 @@
         if (enemy.health <= 0) {
             [enemy removeFromParent];
             [hud addPoints:enemy.pointsForKill];
+            hud.kills++;
         }
         
         if (projectile.chargedEmitter != nil) {
@@ -249,6 +246,19 @@
     [self.backgroundMusic prepareToPlay];
 }
 
+- (void) saveProfileDetails {
+    ProfileDetails *profile = [Util loadProfileDetails];
+    
+    profile.highScore = profile.highScore < hud.score ? hud.score : profile.highScore;
+    profile.totalScore += hud.score;
+    profile.mostKills = profile.mostKills < hud.kills ? hud.kills : profile.mostKills;
+    profile.totalKills += hud.kills;
+    profile.longestGameTime = profile.longestGameTime < _totalGameTime ? _totalGameTime : profile.longestGameTime;
+    profile.totalGameTime += _totalGameTime;
+    
+    [Util saveProfileDetails:profile];
+}
+
 - (void) endGame {
     [self.view removeGestureRecognizer:tapRecognizer];
     [self.view removeGestureRecognizer:longPressRecognizer];
@@ -260,14 +270,20 @@
     
     [hud runAction:[SKAction fadeOutWithDuration:0.7]];
     
-    GameOverNode *gameOver = [GameOverNode gameOverAtPosition:CGPointZero score:hud.score scene:self];
+    GameOverNode *gameOver = [GameOverNode gameOverAtPosition:CGPointZero score:hud.score kills:hud.kills scene:self];
     [self addChild:gameOver];
+    
+    [self saveProfileDetails];
 }
 
 -(void)update:(CFTimeInterval)currentTime {
     if (_lastUpdateTimeInterval) {
         _timeSinceLastUpdate = currentTime - _lastUpdateTimeInterval;
         _timeSinceEnemyAdded += _timeSinceLastUpdate;
+    }
+    
+    if (!_gameOver) {
+        _totalGameTime += _timeSinceLastUpdate;
     }
     
     if (_timeSinceEnemyAdded > EnemySpawnTimeInterval && !_gameOver) {

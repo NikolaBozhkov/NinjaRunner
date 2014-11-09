@@ -13,21 +13,16 @@
 
 @implementation GameOverNode
 
-+ (instancetype)gameOverAtPosition:(CGPoint)position score:(NSInteger)score scene:(GameScene *)scene {
+static NSString *playerScoreKey = @"playerScore";
+
++ (instancetype)gameOverAtPosition:(CGPoint)position score:(NSInteger)score kills:(NSInteger)kills scene:(GameScene *)scene {
     GameOverNode *gameOver = [self node];
     gameOver.zPosition = 10;
     
-    NSInteger highScore = [gameOver getHighScore];
-    
-    if (highScore < score) {
-        highScore = score;
-        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        [userDefaults setObject:[NSNumber numberWithInteger:highScore] forKey:@"highscore"];
-        
-        if ([Util checkInternetConnection]) {
-            [ParseHelper saveHighScore:highScore];
-        }
-    }
+    PlayerScore *playerScore = [gameOver getPlayerScore];
+    playerScore.score = playerScore.score < score ? score : playerScore.score;
+    playerScore.kills += kills;
+    [gameOver savePlayerScore:playerScore];
     
     NSString *normalFont = @"Futura-CondensedExtraBold";
     float labelMargin = scene.frame.size.height * MarginPercent;
@@ -60,7 +55,7 @@
     leaderboardLabel.name = LeaderboardLabelName;
     [gameOver addChild:leaderboardLabel];
     
-    NSString *highScoreString = [NSString stringWithFormat:@"HIGH SCORE: %li", highScore];
+    NSString *highScoreString = [NSString stringWithFormat:@"HIGH SCORE: %li", playerScore.score];
     SKLabelNode *highScoreLabel = [Util createLabelWithFont:normalFont text:highScoreString fontColor:[SKColor blackColor] fontSize:25];
     highScoreLabel.position = CGPointMake(scene.center.x, leaderboardLabel.position.y - highScoreLabel.frame.size.height - labelMargin * 2);
     [gameOver addChild:highScoreLabel];
@@ -68,19 +63,19 @@
     return gameOver;
 }
 
-- (NSInteger) getHighScore {
-    NSNumber *scoreFromData;
-    if ([Util checkInternetConnection]) {
-        scoreFromData = [[NSUserDefaults standardUserDefaults] objectForKey:@"highscore"];
-    } else {
-        scoreFromData = [ParseHelper getHighScore];
-    }
+- (PlayerScore *) getPlayerScore {
+    PlayerScore *playerScore;
+    ProfileDetails *profile = [Util loadProfileDetails];
+        
+    playerScore = [PlayerScore object];
+    playerScore.score = profile.highScore;
+    playerScore.kills = profile.totalKills;
     
-    if (scoreFromData != nil) {
-        return [scoreFromData integerValue];
-    }
-    
-    return 0;
+    return playerScore;
+}
+
+- (void) savePlayerScore:(PlayerScore *)playerScore  {
+    [ParseHelper savePlayerScore:playerScore];
 }
 
 @end

@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "ProfileDetails.h"
+#import "Util.h"
 
 @interface AppDelegate ()
 
@@ -20,6 +22,13 @@
     [Parse setApplicationId:@"U1LkLVbCDzc3Q0fzFW5eKsfkArTQmmYdir0EwPPk"
                   clientKey:@"FsPN3n4qbAVytFJOgtspt4EjCgT0GYz7YdmxEpry"];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
+    // Load profile or create a new one
+    Profile = [Util loadProfileDetails];
+    if (!Profile) {
+        Profile = [[ProfileDetails alloc] init];
+        [Util saveProfileDetails:Profile];
+    }
 
     return YES;
 }

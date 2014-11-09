@@ -7,58 +7,57 @@
 //
 
 #import "ParseHelper.h"
+#import "PlayerScore.h"
 
 @implementation ParseHelper
 
-static NSString *PlayerScoreClassName = @"PlayerScore";
 static NSString *UserIdKey = @"userId";
-static NSString *ScoreKey = @"score";
-static NSString *NameKey = @"name";
 
-+ (NSNumber *)getHighScore {
-    __block NSNumber *highscore;
++ (PlayerScore *)getPlayerScore {
+    __block PlayerScore *playerScore;
     UIDevice *device = [UIDevice currentDevice];
     NSString *deviceIdentifierString = [device.identifierForVendor UUIDString];
     
-    PFQuery *query = [PFQuery queryWithClassName:PlayerScoreClassName];
+    PFQuery *query = [PlayerScore query];
     [query whereKey:UserIdKey equalTo:deviceIdentifierString];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *playerScoreArray, NSError *error) {
         if (!error) {
             if (playerScoreArray.count == 0) {
-                highscore = nil;
+                playerScore = nil;
             } else {
-                highscore = [playerScoreArray.firstObject objectForKey:ScoreKey];
+                playerScore = playerScoreArray.firstObject;
             }
         }
     }];
     
-    return highscore;
+    return playerScore;
 }
 
-+ (void)saveHighScore:(NSInteger)highScore {
++ (void)savePlayerScore:(PlayerScore *)playerScore {
     UIDevice *device = [UIDevice currentDevice];
     NSString *deviceIdentifierString = [device.identifierForVendor UUIDString];
     
-    PFQuery *query = [PFQuery queryWithClassName:PlayerScoreClassName];
+    PFQuery *query = [PlayerScore query];
     [query whereKey:UserIdKey equalTo:deviceIdentifierString];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *playerScoreArray, NSError *error) {
         if (!error) {
-            PFObject *playerScore = playerScoreArray.firstObject;
+            PlayerScore *foundPlayer = playerScoreArray.firstObject;
             
-            if (!playerScore) {
-                playerScore = [PFObject objectWithClassName:PlayerScoreClassName];
-                playerScore[UserIdKey] = deviceIdentifierString;
-                playerScore[NameKey] = @"Player";//(NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:NameKey];
+            if (!foundPlayer) {
+                foundPlayer = [PlayerScore object];
+                foundPlayer.userId = deviceIdentifierString;
+                foundPlayer.name = @"Player";//(NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:NameKey];
             }
             
-            playerScore[ScoreKey] = [NSNumber numberWithInteger:highScore];
-            
+            foundPlayer.score = playerScore.score;
+            foundPlayer.kills = playerScore.kills;
+
             if ([Util checkInternetConnection]) {
-                [playerScore saveInBackground];
+                [foundPlayer saveInBackground];
             } else {
-                [playerScore saveEventually];
+                [foundPlayer saveEventually];
             }
         }
     }];

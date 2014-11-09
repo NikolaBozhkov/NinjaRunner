@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <SpriteKit/SpriteKit.h>
+#import "ProfileDetails.h"
 
 static const CGFloat GravityMultiplier = 0.025;
 
@@ -28,7 +29,7 @@ static const NSInteger DragonPoints = 500;
 
 static const CGFloat MonsterBullVelocityX = -250;
 static const NSInteger MonsterBullHealth = 100;
-static const NSInteger MonsterBullPoints = 30;
+static const NSInteger MonsterBullPoints = 60;
 
 static const CGFloat EagleYPercent = 0.50;
 static const CGFloat EagleVelocityX = -320;
@@ -64,6 +65,9 @@ static NSString *PowerAttackOnCdText = @"Cooldown";
 
 static NSString *ScoreLabelName = @"Score";
 
+static NSString *ProfileDetailsKey = @"profiledetails";
+ProfileDetails *Profile;
+
 static NSString *ChargedProjectileFilePath;
 
 static const NSInteger NumberOfTypes = 4;
@@ -85,5 +89,8 @@ typedef NS_OPTIONS(NSUInteger, CollisionCategory) {
 
 + (SKLabelNode *) createLabelWithFont:(NSString *)font text:(NSString *)text fontColor:(SKColor *)color fontSize:(NSInteger)fontSize;
 + (BOOL) checkInternetConnection;
+
++ (void) saveProfileDetails:(ProfileDetails *)profile;
++ (ProfileDetails *) loadProfileDetails;
 
 @end

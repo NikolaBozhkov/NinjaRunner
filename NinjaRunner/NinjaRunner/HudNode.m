@@ -16,6 +16,7 @@
     hud.position = position;
     hud.zPosition = 10;
     hud.score = 0;
+    hud.kills = 0;
 
     SKLabelNode *scoreLabel = [SKLabelNode labelNodeWithFontNamed:@"Futura-CondensedExtraBold"];
     scoreLabel.name = ScoreLabelName;
