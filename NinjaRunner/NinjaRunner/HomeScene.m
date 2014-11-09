@@ -8,6 +8,7 @@
 
 #import "HomeScene.h"
 #import "GameScene.h"
+#import "TutorialScene.h"
 #import "Util.h"
 
 @implementation HomeScene
@@ -68,7 +69,8 @@ static NSString *leaderboardLabelName = @"Leaderboard";
         GameScene *gameScene = [GameScene sceneWithSize:self.frame.size];
         [self.view presentScene:gameScene transition:transition];
     } else if (node.name == tutorialLabelName) {
-        
+        TutorialScene *tutorialScene = [TutorialScene sceneWithSize:self.frame.size];
+        [self.view presentScene:tutorialScene transition:transition];
     } else if (node.name == leaderboardLabelName) {
         
     }

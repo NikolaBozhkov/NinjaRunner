@@ -14,6 +14,8 @@ static NSString *NinjaJumpActionKey = @"Jump";
 
 + (instancetype) ninjaWithPosition:(CGPoint)position inScene:(SKScene *)scene;
 
+@property (nonatomic, strong, readonly) SKAction *jumpAnimation;
+@property (nonatomic, strong, readonly) SKAction *attackAnimation;
 @property (nonatomic, assign) NSInteger jumpsInProgressCount;
 @property (nonatomic, assign) NSInteger damage;
 @property (nonatomic, assign) NSTimeInterval powerAttackCooldown;
@@ -25,5 +27,8 @@ static NSString *NinjaJumpActionKey = @"Jump";
 - (void) die;
 - (void) chargeAttack;
 - (void) enablePowerAttack;
+
+- (void) tutorialAttack;
+- (void) tutorialPowerAttack;
 
 @end

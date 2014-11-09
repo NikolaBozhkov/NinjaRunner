@@ -20,7 +20,7 @@ static const CGFloat MarginPercent = 0.013;
 static const CGFloat ChargeAttackDuration = 1.0;
 static const CGFloat ChargeAttackDamageMultiplier = 5;
 
-static const NSTimeInterval EnemySpawnTimeInterval = 1.75;
+static const NSTimeInterval EnemySpawnTimeInterval = 1.6;
 static const NSInteger DragonSpawnChance = 10;
 static const CGFloat DragonYPercent = 0.80;
 static const CGFloat DragonVelocityX = -120;

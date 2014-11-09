@@ -124,6 +124,21 @@
     [self.parent addChild:projectile];
 }
 
+- (void) tutorialAttack {
+    SKAction *wait = [SKAction waitForDuration:1];
+    SKAction *runBlock = [SKAction runBlock:^{
+        [self attack];
+    }];
+    
+    SKAction *sequence = [SKAction sequence:@[runBlock, wait]];
+    [self runAction:[SKAction repeatActionForever:sequence]];
+}
+
+- (void) tutorialPowerAttack {
+    _isPowerAttackEnabled = YES;
+    [self tutorialAttack];
+}
+
 - (void) die {
     [self removeAllActions];
     self.xScale = 0.95;

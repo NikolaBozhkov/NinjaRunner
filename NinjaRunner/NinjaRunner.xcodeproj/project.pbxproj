@@ -10,6 +10,7 @@
 		06342AC01A081BD0007D2256 /* NinjaNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 06342ABF1A081BD0007D2256 /* NinjaNode.m */; };
 		240B78801A0F698700DD80DF /* PlayerScore.m in Sources */ = {isa = PBXBuildFile; fileRef = 240B787F1A0F698700DD80DF /* PlayerScore.m */; };
 		240B78831A0F728E00DD80DF /* ProfileDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 240B78821A0F728E00DD80DF /* ProfileDetails.m */; };
+		240B78861A0FA38D00DD80DF /* TutorialScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 240B78851A0FA38D00DD80DF /* TutorialScene.m */; };
 		2419D57E1A0CE10C00D62363 /* MonsterBullNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 2419D57D1A0CE10C00D62363 /* MonsterBullNode.m */; };
 		2419D5821A0CE3F200D62363 /* EnemyFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2419D5811A0CE3F200D62363 /* EnemyFactory.m */; };
 		2419D5851A0D0D2200D62363 /* EagleNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 2419D5841A0D0D2200D62363 /* EagleNode.m */; };
@@ -70,6 +71,8 @@
 		240B787F1A0F698700DD80DF /* PlayerScore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerScore.m; sourceTree = "<group>"; };
 		240B78811A0F728E00DD80DF /* ProfileDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileDetails.h; sourceTree = "<group>"; };
 		240B78821A0F728E00DD80DF /* ProfileDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileDetails.m; sourceTree = "<group>"; };
+		240B78841A0FA38D00DD80DF /* TutorialScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialScene.h; sourceTree = "<group>"; };
+		240B78851A0FA38D00DD80DF /* TutorialScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialScene.m; sourceTree = "<group>"; };
 		2419D57C1A0CE10C00D62363 /* MonsterBullNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonsterBullNode.h; sourceTree = "<group>"; };
 		2419D57D1A0CE10C00D62363 /* MonsterBullNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonsterBullNode.m; sourceTree = "<group>"; };
 		2419D5801A0CE3F200D62363 /* EnemyFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnemyFactory.h; sourceTree = "<group>"; };
@@ -242,6 +245,8 @@
 				247A8A0E1A0B85640095A6C9 /* InteractiveNodes */,
 				2421CAE21A07A989000DB144 /* GameScene.h */,
 				2421CAE31A07A989000DB144 /* GameScene.m */,
+				240B78841A0FA38D00DD80DF /* TutorialScene.h */,
+				240B78851A0FA38D00DD80DF /* TutorialScene.m */,
 				2420CB0B1A0E3AEF0068C9BD /* HomeScene.h */,
 				2420CB0C1A0E3AEF0068C9BD /* HomeScene.m */,
 				240B78811A0F728E00DD80DF /* ProfileDetails.h */,
@@ -450,6 +455,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				247A8A191A0BAF5B0095A6C9 /* EnemyNode.m in Sources */,
+				240B78861A0FA38D00DD80DF /* TutorialScene.m in Sources */,
 				243D64571A0942D100166A00 /* GroundNode.m in Sources */,
 				06342AC01A081BD0007D2256 /* NinjaNode.m in Sources */,
 				2420CB2A1A0E58240068C9BD /* ParseHelper.m in Sources */,
