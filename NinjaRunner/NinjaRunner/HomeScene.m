@@ -56,7 +56,7 @@ static NSString *leaderboardLabelName = @"Leaderboard";
     leaderboardLabel.name = leaderboardLabelName;
     leaderboardLabel.position = CGPointMake(self.frame.size.width - leaderboardLabel.frame.size.width / 2 - labelMargin,
                                             profileLabel.position.y - leaderboardLabel.frame.size.height - labelMargin * 2);
-    [self addChild:leaderboardLabel];
+//    [self addChild:leaderboardLabel];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
