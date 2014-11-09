@@ -55,7 +55,7 @@ static NSString *playerScoreKey = @"playerScore";
     leaderboardLabel.name = LeaderboardLabelName;
     [gameOver addChild:leaderboardLabel];
     
-    NSString *highScoreString = [NSString stringWithFormat:@"HIGH SCORE: %li", playerScore.score];
+    NSString *highScoreString = [NSString stringWithFormat:@"HIGH SCORE: %li", (long)playerScore.score];
     SKLabelNode *highScoreLabel = [Util createLabelWithFont:normalFont text:highScoreString fontColor:[SKColor blackColor] fontSize:25];
     highScoreLabel.position = CGPointMake(scene.center.x, leaderboardLabel.position.y - highScoreLabel.frame.size.height - labelMargin * 2);
     [gameOver addChild:highScoreLabel];
