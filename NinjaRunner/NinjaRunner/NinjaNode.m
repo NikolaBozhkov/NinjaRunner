@@ -154,6 +154,7 @@
     chargedProjectile.zPosition = 1;
     chargedProjectile.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:1];
     chargedProjectile.physicsBody.affectedByGravity = NO;
+    chargedProjectile.physicsBody.categoryBitMask = 0;
     chargedProjectile.physicsBody.collisionBitMask = 0;
     chargedProjectile.physicsBody.contactTestBitMask = 0;
     chargedProjectile.physicsBody.velocity = CGVectorMake(ProjectileVelocityX, 0);

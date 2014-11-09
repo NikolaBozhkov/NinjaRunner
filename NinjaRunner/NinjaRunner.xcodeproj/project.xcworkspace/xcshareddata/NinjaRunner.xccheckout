@@ -10,14 +10,14 @@
 	<string>NinjaRunner</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>CF8174252875EFDA59DB72B850103CE35A7E50B9</key>
+		<key>AF0C6E6EB31C0FE2B59283EB79BDE7F7F358E9E0</key>
 		<string>https://github.com/bellinda/NinjaRunner.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>NinjaRunner/NinjaRunner.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>CF8174252875EFDA59DB72B850103CE35A7E50B9</key>
+		<key>AF0C6E6EB31C0FE2B59283EB79BDE7F7F358E9E0</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
@@ -25,14 +25,14 @@
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>CF8174252875EFDA59DB72B850103CE35A7E50B9</string>
+	<string>AF0C6E6EB31C0FE2B59283EB79BDE7F7F358E9E0</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>CF8174252875EFDA59DB72B850103CE35A7E50B9</string>
+			<string>AF0C6E6EB31C0FE2B59283EB79BDE7F7F358E9E0</string>
 			<key>IDESourceControlWCCName</key>
 			<string>NinjaRunner</string>
 		</dict>

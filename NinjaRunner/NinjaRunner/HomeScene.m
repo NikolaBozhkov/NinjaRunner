@@ -14,6 +14,7 @@
 
 static NSString *playLabelName = @"Play";
 static NSString *tutorialLabelName = @"Tutorial";
+static NSString *profileLabelName = @"Profile";
 static NSString *leaderboardLabelName = @"Leaderboard";
 
 - (void)didMoveToView:(SKView *)view {
@@ -30,24 +31,29 @@ static NSString *leaderboardLabelName = @"Leaderboard";
                                       self.frame.size.height - titleLabel.frame.size.height - labelMargin);
     [self addChild:titleLabel];
     
-    SKLabelNode *playLabel = [Util createLabelWithFont:titleFont text:@"Play" fontColor:[SKColor whiteColor] fontSize:40];
+    SKLabelNode *playLabel = [Util createLabelWithFont:titleFont text:playLabelName fontColor:[SKColor whiteColor] fontSize:40];
     playLabel.name = playLabelName;
     playLabel.position = CGPointMake(self.frame.size.width - playLabel.frame.size.width / 2 - labelMargin,
                                      titleLabel.position.y - playLabel.frame.size.height - labelMargin);
     [self addChild:playLabel];
     
-    SKLabelNode *tutorialLabel = [Util createLabelWithFont:titleFont text:@"Tutorial" fontColor:[SKColor whiteColor] fontSize:40];
+    SKLabelNode *tutorialLabel = [Util createLabelWithFont:titleFont text:tutorialLabelName fontColor:[SKColor whiteColor] fontSize:40];
     tutorialLabel.name = tutorialLabelName;
     tutorialLabel.position = CGPointMake(self.frame.size.width - tutorialLabel.frame.size.width / 2 - labelMargin,
                                          playLabel.position.y - tutorialLabel.frame.size.height - labelMargin * 2);
     [self addChild:tutorialLabel];
     
-    SKLabelNode *leaderboardLabel = [Util createLabelWithFont:titleFont text:@"Leaderboard" fontColor:[SKColor whiteColor] fontSize:40];
+    SKLabelNode *profileLabel = [Util createLabelWithFont:titleFont text:profileLabelName fontColor:[SKColor whiteColor] fontSize:40];
+    profileLabel.name = leaderboardLabelName;
+    profileLabel.position = CGPointMake(self.frame.size.width - profileLabel.frame.size.width / 2 - labelMargin,
+                                        tutorialLabel.position.y - profileLabel.frame.size.height - labelMargin * 2);
+    [self addChild:profileLabel];
+    
+    SKLabelNode *leaderboardLabel = [Util createLabelWithFont:titleFont text:leaderboardLabelName fontColor:[SKColor whiteColor] fontSize:40];
     leaderboardLabel.name = leaderboardLabelName;
     leaderboardLabel.position = CGPointMake(self.frame.size.width - leaderboardLabel.frame.size.width / 2 - labelMargin,
-                                            tutorialLabel.position.y - leaderboardLabel.frame.size.height - labelMargin * 2);
+                                            profileLabel.position.y - leaderboardLabel.frame.size.height - labelMargin * 2);
     [self addChild:leaderboardLabel];
-    
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -55,7 +61,7 @@ static NSString *leaderboardLabelName = @"Leaderboard";
     CGPoint location = [touch locationInNode:self];
     SKNode *node = [self nodeAtPoint:location];
     
-    SKTransition *transition = [SKTransition fadeWithDuration:1.0];
+    SKTransition *transition = [SKTransition fadeWithDuration:0.4];
     
     if (node.name == playLabelName) {
         GameScene *gameScene = [GameScene sceneWithSize:self.frame.size];
