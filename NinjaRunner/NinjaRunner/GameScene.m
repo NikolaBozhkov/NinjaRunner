@@ -110,9 +110,7 @@
     CGFloat ninjaPositionX = self.frame.size.width * NinjaPositionXPercent;
     ninja = [NinjaNode ninjaWithPosition:CGPointMake(ninjaPositionX, _groundHeight) inScene:self];
     [self addChild:ninja];
-    
-    [self addEnemy];
-    
+
     [self setupSounds];
     [_backgroundMusic play];
     

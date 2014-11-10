@@ -22,9 +22,9 @@
     NSInteger fontSize = self.frame.size.height * 0.07;
     float margin = self.frame.size.height * MarginPercent * 2;
     
-    SKLabelNode *headerLabel = [Util createLabelWithFont:normalFont text:@"Profile Overview" fontColor:[SKColor whiteColor] fontSize:fontSize * 1.2];
+    SKLabelNode *headerLabel = [Util createLabelWithFont:normalFont text:@"Leaderboard" fontColor:[SKColor whiteColor] fontSize:fontSize * 1.2];
     headerLabel.position = CGPointMake(self.frame.size.width / 2, self.frame.size.height - headerLabel.frame.size.height - margin);
-    [self addChild:headerLabel];
+    [self addChild:headerLabel];   
 }
 
 @end
