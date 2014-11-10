@@ -11,16 +11,17 @@
 #import "TutorialScene.h"
 #import "Util.h"
 #import "ProfileScene.h"
+#import "LeaderboardScene.h"
 
 @implementation HomeScene
 
 static NSString *playLabelName = @"Play";
 static NSString *tutorialLabelName = @"Tutorial";
 static NSString *profileLabelName = @"Profile";
-static NSString *leaderboardLabelName = @"Leaderboard";
 
 - (void)didMoveToView:(SKView *)view {
     SKSpriteNode *background = [SKSpriteNode spriteNodeWithImageNamed:@"home_screen_background"];
+    background.zPosition = -10;
     background.size = self.view.bounds.size;
     background.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
     [self addChild:background];
@@ -52,11 +53,11 @@ static NSString *leaderboardLabelName = @"Leaderboard";
                                         tutorialLabel.position.y - profileLabel.frame.size.height - labelMargin * 2);
     [self addChild:profileLabel];
     
-    SKLabelNode *leaderboardLabel = [Util createLabelWithFont:titleFont text:leaderboardLabelName fontColor:[SKColor whiteColor] fontSize:fontSize];
-    leaderboardLabel.name = leaderboardLabelName;
+    SKLabelNode *leaderboardLabel = [Util createLabelWithFont:titleFont text:LeaderboardLabelName fontColor:[SKColor whiteColor] fontSize:fontSize];
+    leaderboardLabel.name = LeaderboardLabelName;
     leaderboardLabel.position = CGPointMake(self.frame.size.width - leaderboardLabel.frame.size.width / 2 - labelMargin,
                                             profileLabel.position.y - leaderboardLabel.frame.size.height - labelMargin * 2);
-//    [self addChild:leaderboardLabel];
+    [self addChild:leaderboardLabel];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -76,6 +77,10 @@ static NSString *leaderboardLabelName = @"Leaderboard";
         ProfileScene *profileScene = [ProfileScene sceneWithSize:self.frame.size];
         transition = [SKTransition pushWithDirection:SKTransitionDirectionLeft duration:0.4];
         [self.view presentScene:profileScene transition:transition];
+    } else if (node.name == LeaderboardLabelName) {
+        LeaderboardScene *leaderboardScene = [LeaderboardScene sceneWithSize:self.frame.size];
+        transition = [SKTransition fadeWithDuration:1];
+        [self.view presentScene:leaderboardScene transition:transition];
     }
 }
 

@@ -23,6 +23,7 @@
 #import "GameOverNode.h"
 #import "CoreDataHelper.h"
 #import "CDProfileDetails.h"
+#import "LeaderboardScene.h"
 
 @interface GameScene ()<SKPhysicsContactDelegate, UIGestureRecognizerDelegate>
 
@@ -225,6 +226,10 @@
         HomeScene *home = [HomeScene sceneWithSize:self.frame.size];
         SKTransition *transition = [SKTransition fadeWithDuration:1.0];
         [self.view presentScene:home transition:transition];
+    } else if ([node.name isEqualToString:LeaderboardLabelName]) {
+        LeaderboardScene *leaderboardScene = [LeaderboardScene sceneWithSize:self.frame.size];
+        SKTransition *transition = [SKTransition fadeWithDuration:1];
+        [self.view presentScene:leaderboardScene transition:transition];
     }
 }
 
@@ -324,11 +329,11 @@
     
     [Util saveProfileDetails:Profile];
     
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"CDProfileDetails"];
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"CDPlayerDetails"];
     NSArray *fetchedObjects = [coreDataHelper.context executeFetchRequest:request error:nil];
     
     if (fetchedObjects.count == 0) {
-        playerScore = [NSEntityDescription insertNewObjectForEntityForName:@"CDProfileDetails"
+        playerScore = [NSEntityDescription insertNewObjectForEntityForName:@"CDPlayerDetails"
                                                     inManagedObjectContext:coreDataHelper.context];
     } else {
         playerScore = fetchedObjects.firstObject;

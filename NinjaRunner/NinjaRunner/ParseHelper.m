@@ -79,7 +79,7 @@ static NSString *UserIdKey = @"userId";
 
 + (void)getTopTenPlayerScoresWithBlock:(void(^)(NSArray *playerScoreArray))block {
     PFQuery *query = [PlayerScore query];
-    [query orderByAscending:@"score"];
+    [query orderByDescending:@"score"];
     query.limit = 10;
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *playerScoreArray, NSError *error) {
