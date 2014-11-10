@@ -77,6 +77,18 @@ static NSString *UserIdKey = @"userId";
     }];
 }
 
++ (void)getTopTenPlayerScoresWithBlock:(void(^)(NSArray *playerScoreArray))block {
+    PFQuery *query = [PlayerScore query];
+    [query orderByAscending:@"score"];
+    query.limit = 10;
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *playerScoreArray, NSError *error) {
+        if (!error) {
+            block(playerScoreArray);
+        }
+    }];
+}
+
 + (void) savePlayerScoreWithBlock:(void(^)(NSArray *playerScoreArray))block {
     UIDevice *device = [UIDevice currentDevice];
     NSString *deviceIdentifierString = [device.identifierForVendor UUIDString];

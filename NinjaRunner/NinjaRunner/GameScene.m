@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 TeamOnaga. All rights reserved.
 //
 
+#import <AVFoundation/AVFoundation.h>
+#import <CoreData/CoreData.h>
 #import "GameScene.h"
 #import "NinjaNode.h"
 #import "DragonNode.h"
@@ -19,7 +21,8 @@
 #import "HudNode.h"
 #import "HomeScene.h"
 #import "GameOverNode.h"
-#import <AVFoundation/AVFoundation.h>
+#import "CoreDataHelper.h"
+#import "CDProfileDetails.h"
 
 @interface GameScene ()<SKPhysicsContactDelegate, UIGestureRecognizerDelegate>
 
@@ -34,7 +37,8 @@
 @property (nonatomic, assign) BOOL isLongPressActive;
 
 @property (nonatomic, assign) BOOL isPlayingMusic;
-@property (nonatomic) AVAudioPlayer *backgroundMusic;
+@property (nonatomic, strong) AVAudioPlayer *backgroundMusic;
+@property (nonatomic, strong) AVAudioPlayer *gameOverMusic;
 
 @end
 
@@ -49,7 +53,8 @@
     ChargingNode *chargingNode;
     HudNode *hud;
     
-    SKSpriteNode *musicButton;
+    CDProfileDetails *playerScore;
+    
     SKSpriteNode *quitButton;
     SKSpriteNode *rerunButton;
     
@@ -60,6 +65,7 @@
 
 - (void) didMoveToView:(SKView *)view {
     /* Setup your scene here */
+    
     self.center = CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2);
     _timeSinceEnemyAdded = 0;
     _totalGameTime = 0;
@@ -106,6 +112,11 @@
     [self addChild:ninja];
     
     [self addEnemy];
+    
+    [self setupSounds];
+    [_backgroundMusic play];
+    
+    _isPlayingMusic = YES;
 }
 
 - (void) setupGestureRecognizers {
@@ -173,10 +184,12 @@
 
 - (void) handlePause {
     [self addChild:pauseLabel];
+    [_backgroundMusic pause];
 }
 
 - (void) handleUnpause {
     self.paused = YES;
+    [_backgroundMusic play];
 }
 
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -189,16 +202,28 @@
             self.paused = NO;
             _lastUpdateTimeInterval = 0;
             [pauseLabel removeFromParent];
+            [_backgroundMusic play];
         } else {
             [self addChild:pauseLabel];
             self.paused = YES;
+            [_backgroundMusic pause];
         }
     }
     
-    if (node.name == ReplayLabelName) {
+    if ([node.name isEqualToString:@"musicButton"]) {
+        if (_isPlayingMusic) {
+            [_backgroundMusic stop];
+            _isPlayingMusic = NO;
+        } else {
+            [_backgroundMusic play];
+            _isPlayingMusic = YES;
+        }
+    }
+    
+    if ([node.name isEqualToString: ReplayLabelName]) {
         GameScene *scene = [GameScene sceneWithSize:self.frame.size];
         [self.view presentScene:scene];
-    } else if (node.name == MenuLabelName) {
+    } else if ([node.name isEqualToString: MenuLabelName]) {
         HomeScene *home = [HomeScene sceneWithSize:self.frame.size];
         SKTransition *transition = [SKTransition fadeWithDuration:1.0];
         [self.view presentScene:home transition:transition];
@@ -222,6 +247,8 @@
             [self endGame];
         }
         _gameOver = YES;
+        [_backgroundMusic stop];
+        [_gameOverMusic play];
     }
 
     // Reset jumps count on ground touch
@@ -281,6 +308,12 @@
     self.backgroundMusic = [[AVAudioPlayer alloc] initWithContentsOfURL:backgroundMusicUrl error:nil];
     self.backgroundMusic.numberOfLoops = -1;
     [self.backgroundMusic prepareToPlay];
+    
+    NSURL *gameOverMusicUrl = [[NSBundle mainBundle] URLForResource:@"GameOver" withExtension:@".mp3"];
+    
+    self.gameOverMusic = [[AVAudioPlayer alloc] initWithContentsOfURL:gameOverMusicUrl error:nil];
+    self.gameOverMusic.numberOfLoops = 1;
+    [self.gameOverMusic prepareToPlay];
 }
 
 - (void) saveProfileDetails {
@@ -292,6 +325,24 @@
     Profile.totalGameTime += _totalGameTime;
     
     [Util saveProfileDetails:Profile];
+    
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"CDProfileDetails"];
+    NSArray *fetchedObjects = [coreDataHelper.context executeFetchRequest:request error:nil];
+    
+    if (fetchedObjects.count == 0) {
+        playerScore = [NSEntityDescription insertNewObjectForEntityForName:@"CDProfileDetails"
+                                                    inManagedObjectContext:coreDataHelper.context];
+    } else {
+        playerScore = fetchedObjects.firstObject;
+    }
+    
+    playerScore.highScore = [NSNumber numberWithInteger:Profile.highScore];
+    playerScore.totalScore = [NSNumber numberWithInteger:Profile.totalScore];
+    playerScore.mostKills = [NSNumber numberWithInteger:Profile.mostKills];
+    playerScore.totalKills = [NSNumber numberWithInteger:Profile.totalKills];
+    playerScore.longestGame = [NSNumber numberWithDouble:Profile.longestGameTime];
+    playerScore.totalGameTime = [NSNumber numberWithDouble:Profile.totalGameTime];
+    [coreDataHelper saveContext];
 }
 
 - (void) endGame {

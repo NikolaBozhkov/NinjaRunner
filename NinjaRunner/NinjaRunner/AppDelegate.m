@@ -6,10 +6,13 @@
 //  Copyright (c) 2014 TeamOnaga. All rights reserved.
 //
 
+#import <CoreData/CoreData.h>
 #import "AppDelegate.h"
 #import "ProfileDetails.h"
 #import "Util.h"
 #import "GameScene.h"
+#import "CoreDataHelper.h"
+#import "CDProfileDetails.h"
 
 @interface AppDelegate ()
 
@@ -30,7 +33,10 @@
         Profile = [[ProfileDetails alloc] init];
         [Util saveProfileDetails:Profile];
     }
-
+    
+    coreDataHelper = [[CoreDataHelper alloc] init];
+    [coreDataHelper setupCoreData];
+    
     return YES;
 }
 

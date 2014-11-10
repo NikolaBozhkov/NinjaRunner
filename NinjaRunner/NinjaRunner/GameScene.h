@@ -8,6 +8,9 @@
 
 #import <SpriteKit/SpriteKit.h>
 #import "NinjaNode.h"
+#import "CoreDataHelper.h"
+
+CoreDataHelper *coreDataHelper;
 
 @interface GameScene : SKScene
 

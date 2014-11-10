@@ -34,6 +34,14 @@
     hud.pauseButton.position = CGPointMake(margin, margin);
     [hud addChild:hud.pauseButton];
     
+    SKSpriteNode *musicButton = [SKSpriteNode spriteNodeWithImageNamed:@"music_icon"];
+    musicButton.name = @"musicButton";
+    musicButton.xScale = 0.2;
+    musicButton.yScale = 0.2;
+    musicButton.position = CGPointMake(frame.size.width / 2, -margin);
+    
+    [hud addChild:musicButton];
+    
     return hud;
 }
 

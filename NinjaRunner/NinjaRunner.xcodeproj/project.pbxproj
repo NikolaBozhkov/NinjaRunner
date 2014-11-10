@@ -42,6 +42,12 @@
 		2421CAEE1A07A989000DB144 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2421CAED1A07A989000DB144 /* Images.xcassets */; };
 		2421CAF11A07A989000DB144 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2421CAEF1A07A989000DB144 /* LaunchScreen.xib */; };
 		2421CAFD1A07A989000DB144 /* NinjaRunnerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2421CAFC1A07A989000DB144 /* NinjaRunnerTests.m */; };
+		243D5ADC1A10A3C10029DBEB /* LeaderboardScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 243D5ADB1A10A3C10029DBEB /* LeaderboardScene.m */; };
+		243D5ADE1A10A61E0029DBEB /* BackgroundMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 243D5ADD1A10A61E0029DBEB /* BackgroundMusic.mp3 */; };
+		243D5AE11A10A9D00029DBEB /* GameOver.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 243D5AE01A10A9D00029DBEB /* GameOver.mp3 */; };
+		243D5AE41A10AC170029DBEB /* CoreDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 243D5AE31A10AC170029DBEB /* CoreDataHelper.m */; };
+		243D5AE71A10AC500029DBEB /* CDProfileDetails.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 243D5AE51A10AC500029DBEB /* CDProfileDetails.xcdatamodeld */; };
+		243D5AED1A10AE6A0029DBEB /* CDProfileDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 243D5AEC1A10AE6A0029DBEB /* CDProfileDetails.m */; };
 		243D64501A092D2900166A00 /* BackgroundNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 243D644F1A092D2900166A00 /* BackgroundNode.m */; };
 		243D64531A0933F300166A00 /* VectorHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 243D64521A0933F300166A00 /* VectorHelper.m */; };
 		243D64571A0942D100166A00 /* GroundNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 243D64561A0942D100166A00 /* GroundNode.m */; };
@@ -120,6 +126,15 @@
 		2421CAF01A07A989000DB144 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		2421CAFB1A07A989000DB144 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2421CAFC1A07A989000DB144 /* NinjaRunnerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NinjaRunnerTests.m; sourceTree = "<group>"; };
+		243D5ADA1A10A3C10029DBEB /* LeaderboardScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeaderboardScene.h; sourceTree = "<group>"; };
+		243D5ADB1A10A3C10029DBEB /* LeaderboardScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeaderboardScene.m; sourceTree = "<group>"; };
+		243D5ADD1A10A61E0029DBEB /* BackgroundMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BackgroundMusic.mp3; sourceTree = "<group>"; };
+		243D5AE01A10A9D00029DBEB /* GameOver.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = GameOver.mp3; sourceTree = "<group>"; };
+		243D5AE21A10AC170029DBEB /* CoreDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataHelper.h; sourceTree = "<group>"; };
+		243D5AE31A10AC170029DBEB /* CoreDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataHelper.m; sourceTree = "<group>"; };
+		243D5AE61A10AC500029DBEB /* CDProfileDetails.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CDProfileDetails.xcdatamodel; sourceTree = "<group>"; };
+		243D5AEB1A10AE6A0029DBEB /* CDProfileDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDProfileDetails.h; sourceTree = "<group>"; };
+		243D5AEC1A10AE6A0029DBEB /* CDProfileDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDProfileDetails.m; sourceTree = "<group>"; };
 		243D644E1A092D2900166A00 /* BackgroundNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BackgroundNode.h; path = NinjaRunner/BackgroundNode.h; sourceTree = "<group>"; };
 		243D644F1A092D2900166A00 /* BackgroundNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BackgroundNode.m; path = NinjaRunner/BackgroundNode.m; sourceTree = "<group>"; };
 		243D64511A0933F300166A00 /* VectorHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VectorHelper.h; sourceTree = "<group>"; };
@@ -178,6 +193,9 @@
 		240B787D1A0F696E00DD80DF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				243D5AEB1A10AE6A0029DBEB /* CDProfileDetails.h */,
+				243D5AEC1A10AE6A0029DBEB /* CDProfileDetails.m */,
+				243D5AE51A10AC500029DBEB /* CDProfileDetails.xcdatamodeld */,
 				240B787E1A0F698700DD80DF /* PlayerScore.h */,
 				240B787F1A0F698700DD80DF /* PlayerScore.m */,
 			);
@@ -242,6 +260,7 @@
 		2421CADA1A07A989000DB144 /* NinjaRunner */ = {
 			isa = PBXGroup;
 			children = (
+				243D5ADF1A10A9C30029DBEB /* Sounds */,
 				243D64541A09365500166A00 /* Utility */,
 				244280631A0A48B2005F6A87 /* HUD */,
 				247A8A0C1A0B84E20095A6C9 /* NonInteractiveNodes */,
@@ -250,6 +269,8 @@
 				2421CAE31A07A989000DB144 /* GameScene.m */,
 				2420CB0B1A0E3AEF0068C9BD /* HomeScene.h */,
 				2420CB0C1A0E3AEF0068C9BD /* HomeScene.m */,
+				243D5ADA1A10A3C10029DBEB /* LeaderboardScene.h */,
+				243D5ADB1A10A3C10029DBEB /* LeaderboardScene.m */,
 				240B78841A0FA38D00DD80DF /* TutorialScene.h */,
 				240B78851A0FA38D00DD80DF /* TutorialScene.m */,
 				240B78871A0FC3EE00DD80DF /* ProfileScene.h */,
@@ -299,6 +320,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		243D5ADF1A10A9C30029DBEB /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				243D5AE01A10A9D00029DBEB /* GameOver.mp3 */,
+				243D5ADD1A10A61E0029DBEB /* BackgroundMusic.mp3 */,
+			);
+			name = Sounds;
+			sourceTree = "<group>";
+		};
 		243D64541A09365500166A00 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -307,6 +337,8 @@
 				2420CB2C1A0E67150068C9BD /* Reachability.m */,
 				2420CB281A0E58240068C9BD /* ParseHelper.h */,
 				2420CB291A0E58240068C9BD /* ParseHelper.m */,
+				243D5AE21A10AC170029DBEB /* CoreDataHelper.h */,
+				243D5AE31A10AC170029DBEB /* CoreDataHelper.m */,
 				2419D5801A0CE3F200D62363 /* EnemyFactory.h */,
 				2419D5811A0CE3F200D62363 /* EnemyFactory.m */,
 				243D64511A0933F300166A00 /* VectorHelper.h */,
@@ -438,8 +470,10 @@
 				2421CAF11A07A989000DB144 /* LaunchScreen.xib in Resources */,
 				24AF0FF61A0AC99A00A57AE1 /* ChargedProjectile.sks in Resources */,
 				2421CAEE1A07A989000DB144 /* Images.xcassets in Resources */,
+				243D5AE11A10A9D00029DBEB /* GameOver.mp3 in Resources */,
 				24AF0FF71A0AC99A00A57AE1 /* spark.png in Resources */,
 				2421CAE61A07A989000DB144 /* GameScene.sks in Resources */,
+				243D5ADE1A10A61E0029DBEB /* BackgroundMusic.mp3 in Resources */,
 				2421CAEC1A07A989000DB144 /* Main.storyboard in Resources */,
 				24968B9F1A07B25B00E679C5 /* Sprites.atlas in Resources */,
 			);
@@ -465,17 +499,20 @@
 				06342AC01A081BD0007D2256 /* NinjaNode.m in Sources */,
 				2420CB2A1A0E58240068C9BD /* ParseHelper.m in Sources */,
 				2442806D1A0A572F005F6A87 /* ProjectileNode.m in Sources */,
+				243D5AE41A10AC170029DBEB /* CoreDataHelper.m in Sources */,
 				240B78891A0FC3EE00DD80DF /* ProfileScene.m in Sources */,
 				247A8A161A0BA8BF0095A6C9 /* ChargingNode.m in Sources */,
 				2419D58B1A0D3A3E00D62363 /* HudNode.m in Sources */,
 				243D64501A092D2900166A00 /* BackgroundNode.m in Sources */,
 				2420CB0D1A0E3AEF0068C9BD /* HomeScene.m in Sources */,
+				243D5AED1A10AE6A0029DBEB /* CDProfileDetails.m in Sources */,
 				2421CAE91A07A989000DB144 /* GameViewController.m in Sources */,
 				240B78831A0F728E00DD80DF /* ProfileDetails.m in Sources */,
 				2419D5881A0D12AD00D62363 /* EarthDragonNode.m in Sources */,
 				2421CAE11A07A989000DB144 /* AppDelegate.m in Sources */,
 				2421CAE41A07A989000DB144 /* GameScene.m in Sources */,
 				24968BA51A07B8D600E679C5 /* DragonNode.m in Sources */,
+				243D5ADC1A10A3C10029DBEB /* LeaderboardScene.m in Sources */,
 				2420CB2D1A0E67150068C9BD /* Reachability.m in Sources */,
 				247C75351A08FD7C009E0F82 /* Util.m in Sources */,
 				2420CB0A1A0E22BF0068C9BD /* GameOverNode.m in Sources */,
@@ -485,6 +522,7 @@
 				2421CADE1A07A989000DB144 /* main.m in Sources */,
 				240B78801A0F698700DD80DF /* PlayerScore.m in Sources */,
 				2419D5821A0CE3F200D62363 /* EnemyFactory.m in Sources */,
+				243D5AE71A10AC500029DBEB /* CDProfileDetails.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -700,6 +738,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		243D5AE51A10AC500029DBEB /* CDProfileDetails.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				243D5AE61A10AC500029DBEB /* CDProfileDetails.xcdatamodel */,
+			);
+			currentVersion = 243D5AE61A10AC500029DBEB /* CDProfileDetails.xcdatamodel */;
+			path = CDProfileDetails.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 2421CAD01A07A989000DB144 /* Project object */;
 }
